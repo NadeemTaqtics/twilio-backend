@@ -8,9 +8,7 @@ const app = express();
 const port = process.env.PORT || 5005;
 
 // Twilio credentials
-const accountSid = 'AC6b610a3797f7dfe3d1fd7d9e32b5a534';
-const authToken = 'f4439bedf1935af51f03f9b7580d114c';
-const client = Twilio(accountSid, authToken);
+const client = Twilio("TWILIO_ACCOUNT_SID", "TWILIO_AUTH_TOKEN");
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -115,25 +113,17 @@ app.post('/token', (req, res) => {
         // Create a new Access Token
         const AccessToken = Twilio.jwt.AccessToken;
         const ChatGrant = AccessToken.ChatGrant;
-        const API_KEY_SID = "SK7bc4223e2624022c178d89220eb6d240";
-        const API_KEY_SECRET = "Ki32uSkNlChvtraXneCwrH5kq3Oiepij";
 
-        // const chatGrant = new ChatGrant({
-        //     serviceSid: "ISae2f1a6d43b74998841d7d76ef85d2e8",
-        // });
         const token = new AccessToken(
-            'AC6b610a3797f7dfe3d1fd7d9e32b5a534', //accountSid,
-            "SKac5f88c0989a1f740291b308720fe8c1", // API_KEY_SID,
-            "pPYpUNpX6EerzGsgB6REohWlovLoHURW", // API_KEY_SECRET,
+            "TWILIO_ACCOUNT_SID",
+            "TWILIO_API_KEY_SID",
+            "TWILIO_API_KEY_SECRET",
             { identity: identity, ttl: 3600 * 5 }
         );
 
 
-        // const token = new AccessToken('AC71e8085daace39cf06d8236e7d59d115', "SK7bc4223e2624022c178d89220eb6d240", "Ki32uSkNlChvtraXneCwrH5kq3Oiepij", { identity: identity, ttl: 3600 });
-        // token.identity = identity;
-
         const conversationsGrant = new AccessToken.ChatGrant({
-            serviceSid: "ISae2f1a6d43b74998841d7d76ef85d2e8",
+            serviceSid: "TWILIO_CONVERSATION_SERVICE_ID",
         });
 
 
